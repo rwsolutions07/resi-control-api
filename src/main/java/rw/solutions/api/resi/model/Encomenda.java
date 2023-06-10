@@ -17,6 +17,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rw.solutions.api.resi.model.record.DadosCadastroEncomenda;
 
 @Getter
 @Setter
@@ -39,7 +40,7 @@ public class Encomenda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(name = "nome", nullable = false)
 	private String nome;
@@ -54,4 +55,15 @@ public class Encomenda {
 	@Lob
 	@Column(name = "foto_arquivo", nullable = true)
 	private byte[] arquivo;
+	
+	
+	public Encomenda(DadosCadastroEncomenda cadastro, Morador morador, Apartamento apartamento) {
+		this.nome = cadastro.nome();
+		this.morador = morador;
+		this.apartamento = apartamento;
+		this.status = EncomendaStatus.PENDENTE;
+		this.assinadoPor = "";
+		this.arquivo = null;
+	}
+	
 }

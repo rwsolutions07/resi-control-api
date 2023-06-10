@@ -1,5 +1,6 @@
 package rw.solutions.api.resi.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,12 +10,20 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import rw.solutions.api.resi.model.record.DadosCadastroEncomenda;
 import rw.solutions.api.resi.model.record.DadosEncomenda;
 import rw.solutions.api.resi.service.EncomendaService;
 
+@Tag(name = "Encomendas", description = "Métodos de encomendas")
 @RestController
 @RequestMapping("/encomenda/")
 public class EncomendasController {
@@ -36,7 +45,7 @@ public class EncomendasController {
 		
 	}
 	
-	@GetMapping(value = "/{encomendaID}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/id/{encomendaID}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DadosEncomenda> getEncomendaPorID(@PathVariable(required=true) Long encomendaID) {
 		
 		log.info("Buscando a encomenda");
@@ -44,7 +53,17 @@ public class EncomendasController {
 		log.info("HTTP OK.");
 		
 		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
+	
+	@Transactional
+	@PostMapping("")
+	public ResponseEntity<DadosEncomenda> cadastrar(@RequestBody @Valid DadosCadastroEncomenda encomenda, UriComponentsBuilder uriBuilder) {
 		
+		DadosEncomenda response  = this.service.cadastrarEncomenda(encomenda);	
+		URI uri = uriBuilder.path("/encomenda/id/{encomendaID}").buildAndExpand(response.id()).toUri();
+		
+		log.info("HTTP CREATED");
+		return ResponseEntity.created(uri).body(response);
 	}
 
 }

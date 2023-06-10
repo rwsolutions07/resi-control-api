@@ -30,7 +30,7 @@ public class Apartamento {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(name = "apartamento", nullable = false)
 	private String apartamento;
