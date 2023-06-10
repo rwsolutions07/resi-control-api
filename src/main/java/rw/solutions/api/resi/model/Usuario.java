@@ -45,9 +45,9 @@ public class Usuario  implements UserDetails {
 	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Column(name = "TIPO")
+	@Column(name = "tipo")
 	@Enumerated(EnumType.STRING)
-	private UsuarioTipo status;
+	private UsuarioTipo tipo;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
