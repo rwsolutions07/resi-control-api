@@ -25,7 +25,7 @@ public class DocumentacaoConfiguration {
 		return new OpenAPI()
 				   .info(new Info()
 						   .title("API Resi Controll")
-						   .version("1.0.0"));
+						   .version("3.0.0"));
 	}
 	
 	@Bean
