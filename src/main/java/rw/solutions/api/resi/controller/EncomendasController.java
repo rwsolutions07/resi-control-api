@@ -34,6 +34,7 @@ public class EncomendasController {
 	private EncomendaService service;
 	
 	
+	
 	@GetMapping(value = "/{apartamentoID}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<DadosEncomenda>> getEncomendasPorApartamento(@PathVariable(required=true) Long apartamentoID) {
 		

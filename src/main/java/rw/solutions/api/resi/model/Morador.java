@@ -28,14 +28,13 @@ public class Morador {
 	@JoinColumn(name = "condominio_id", referencedColumnName = "id")
 	private Apartamento apartamento;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	private Usuario usuario;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "nome", nullable = false)
 	private String nome;
-	@Column(name = "username", nullable = false)
-	private String username;
-	@Column(name = "password", nullable = false)
-	private String password;
-
 }

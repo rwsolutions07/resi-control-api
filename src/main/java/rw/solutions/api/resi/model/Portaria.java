@@ -29,14 +29,13 @@ public class Portaria {
 	@JoinColumn(name = "condominio_id", referencedColumnName = "id")
 	private Condominio condominio;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	private Usuario usuario;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "nome", nullable = false)
 	private String nome;
-	@Column(name = "username", nullable = false)
-	private String username;
-	@Column(name = "password", nullable = false)
-	private String password;
-
 }

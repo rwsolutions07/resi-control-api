@@ -32,7 +32,6 @@ public class EncomendaService {
 
 	public List<DadosEncomenda> getEncomendasPorApartamento(Long apartamentoID) {
 		
-		
 		log.info("apartamentoID: " + apartamentoID);
 		List<Encomenda> response = this.repository.getEncomendasPorApartamento(apartamentoID);
 		return response.stream().map(encomenda -> new DadosEncomenda(encomenda)).toList();
