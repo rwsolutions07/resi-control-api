@@ -23,9 +23,9 @@ import rw.solutions.api.resi.service.TokenService;
 @Tag(name = "Autenticação", description = "Método para se autenticar na API")
 @RestController
 @RequestMapping("/autenticacao")
-public class AuthenticationController {
+public class AutenticacaoController {
 	
-	private static Logger log = Logger.getLogger(AuthenticationController.class);
+	private static Logger log = Logger.getLogger(AutenticacaoController.class);
 	
 	@Autowired
 	private AuthenticationManager manager;
