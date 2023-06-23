@@ -1,10 +1,11 @@
 package rw.solutions.api.resi.validacoes;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import rw.solutions.api.resi.exceptions.ValidacaoException;
-import rw.solutions.api.resi.model.record.DadosCadastroEncomenda;
 import rw.solutions.api.resi.model.repository.ApartamentoRepository;
 
 @Component("ApartamentoValidacoes")
@@ -14,12 +15,12 @@ public class ApartamentoValidacoes implements ValidacoesSeExisteEncomenda {
 	private ApartamentoRepository repository;
 
 	@Override
-	public void ValidarSeExiste(DadosCadastroEncomenda dados) {
-		if(null == dados.apartamentoID()) {
+	public void ValidarSeExiste(HashMap<String, Long> dados) {
+		if(null == dados.get("apartamentoID")) {
 			throw new ValidacaoException("Apartamento não existe");
 		}
 		
-		if(!this.repository.existsById(dados.apartamentoID())) {
+		if(!this.repository.existsById(dados.get("apartamentoID"))) {
 			throw new ValidacaoException("Apartamento não existe");
 		}
 	}

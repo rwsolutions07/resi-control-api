@@ -1,5 +1,6 @@
 package rw.solutions.api.resi.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -55,7 +56,9 @@ public class EncomendaService {
 
 	public DadosEncomenda cadastrarEncomenda(@Valid DadosCadastroEncomenda cadastro) {
 		
-		validadores.forEach(v -> v.ValidarSeExiste(cadastro));
+		HashMap<String, Long> hashIDs = getHashMapsIDs(cadastro);
+		
+		validadores.forEach(v -> v.ValidarSeExiste(hashIDs));
 		
 		log.info("Morador ID: " + cadastro.moradorID());
 		Morador morador = this.moradorRepository.getReferenceById(cadastro.moradorID());
@@ -70,6 +73,14 @@ public class EncomendaService {
 		this.repository.save(encomenda);
 		
 		return new DadosEncomenda(encomenda);
+	}
+
+	private HashMap<String, Long> getHashMapsIDs(DadosCadastroEncomenda cadastro) {
+		HashMap<String, Long> response = new HashMap<String, Long>();
+		response.put("apartamentoID", cadastro.apartamentoID());
+		response.put("moradorID", cadastro.moradorID());
+		response.put("portariaID", cadastro.portariaID());
+		return response;
 	}
 
 	
