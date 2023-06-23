@@ -17,6 +17,7 @@ import rw.solutions.api.resi.model.repository.ApartamentoRepository;
 import rw.solutions.api.resi.model.repository.EncomendaRepository;
 import rw.solutions.api.resi.model.repository.MoradorRepository;
 import rw.solutions.api.resi.model.repository.PortariaRpository;
+import rw.solutions.api.resi.validacoes.ValidacoesSeExisteEncomenda;
 
 @Service
 public class EncomendaService {
@@ -34,6 +35,9 @@ public class EncomendaService {
 	
 	@Autowired
 	private PortariaRpository portariaRepository;
+	
+	@Autowired
+	private List<ValidacoesSeExisteEncomenda> validadores;
 
 	public List<DadosEncomenda> getEncomendasPorApartamento(Long apartamentoID) {
 		
@@ -50,6 +54,8 @@ public class EncomendaService {
 	}
 
 	public DadosEncomenda cadastrarEncomenda(@Valid DadosCadastroEncomenda cadastro) {
+		
+		validadores.forEach(v -> v.ValidarSeExiste(cadastro));
 		
 		log.info("Morador ID: " + cadastro.moradorID());
 		Morador morador = this.moradorRepository.getReferenceById(cadastro.moradorID());
