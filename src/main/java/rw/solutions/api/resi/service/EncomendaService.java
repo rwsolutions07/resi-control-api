@@ -10,11 +10,13 @@ import jakarta.validation.Valid;
 import rw.solutions.api.resi.model.Apartamento;
 import rw.solutions.api.resi.model.Encomenda;
 import rw.solutions.api.resi.model.Morador;
+import rw.solutions.api.resi.model.Portaria;
 import rw.solutions.api.resi.model.record.DadosCadastroEncomenda;
 import rw.solutions.api.resi.model.record.DadosEncomenda;
 import rw.solutions.api.resi.model.repository.ApartamentoRepository;
 import rw.solutions.api.resi.model.repository.EncomendaRepository;
 import rw.solutions.api.resi.model.repository.MoradorRepository;
+import rw.solutions.api.resi.model.repository.PortariaRpository;
 
 @Service
 public class EncomendaService {
@@ -29,6 +31,9 @@ public class EncomendaService {
 	
 	@Autowired
 	private ApartamentoRepository apartamentoRepository;
+	
+	@Autowired
+	private PortariaRpository portariaRepository;
 
 	public List<DadosEncomenda> getEncomendasPorApartamento(Long apartamentoID) {
 		
@@ -52,7 +57,10 @@ public class EncomendaService {
 		log.info("Apartamnento ID: " + cadastro.apartamentoID());
 		Apartamento apartamento = this.apartamentoRepository.getReferenceById(cadastro.apartamentoID());
 		
-		Encomenda encomenda = new Encomenda(cadastro, morador, apartamento);
+		log.info("Portaria ID: " + cadastro.portariaID());
+		Portaria portaria = this.portariaRepository.getReferenceById(cadastro.portariaID());
+		
+		Encomenda encomenda = new Encomenda(cadastro, morador, apartamento, portaria);
 		this.repository.save(encomenda);
 		
 		return new DadosEncomenda(encomenda);
