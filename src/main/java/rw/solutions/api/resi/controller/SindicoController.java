@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import rw.solutions.api.resi.model.record.DadosSindico;
 import rw.solutions.api.resi.service.SindicoService;
@@ -19,6 +20,7 @@ import rw.solutions.api.resi.service.SindicoService;
 @Tag(name = "Síndico", description = "Métodos do síndico")
 @RestController
 @RequestMapping("/sindico")
+@SecurityRequirement(name = "bearer-key")
 public class SindicoController {
 	
 	private static Logger log = Logger.getLogger(SindicoController.class);

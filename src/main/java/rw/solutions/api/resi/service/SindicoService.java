@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import rw.solutions.api.resi.model.Sindico;
 import rw.solutions.api.resi.model.record.DadosSindico;
 import rw.solutions.api.resi.model.repository.SindicoRepository;
-import rw.solutions.api.resi.validacoes.SindicoValidacoes;
+import rw.solutions.api.resi.validacoes.CondominioValidacoes;
 
 @Service
 public class SindicoService {
@@ -20,7 +20,7 @@ public class SindicoService {
 	private SindicoRepository repository;
 	
 	@Autowired
-	private SindicoValidacoes validacao;
+	private CondominioValidacoes validacao;
 
 	public DadosSindico getSindicoByCondominioID(Long condominioID) {
 		

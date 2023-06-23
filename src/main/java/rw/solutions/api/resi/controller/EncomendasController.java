@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -28,6 +29,7 @@ import rw.solutions.api.resi.service.EncomendaService;
 @Tag(name = "Encomendas", description = "Métodos de encomendas")
 @RestController
 @RequestMapping("/encomenda/")
+@SecurityRequirement(name = "bearer-key")
 public class EncomendasController {
 	
 	private static Logger log = Logger.getLogger(EncomendasController.class);

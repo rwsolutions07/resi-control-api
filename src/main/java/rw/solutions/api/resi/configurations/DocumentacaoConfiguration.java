@@ -8,20 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 
 @OpenAPIDefinition
 @Configuration
-@SecurityScheme(
-        name = "token",
-        type = SecuritySchemeType.HTTP,
-        bearerFormat = "JWT",
-        scheme = "bearer"
-)
 public class DocumentacaoConfiguration {
 	
 	@Value("${bezkoder.openapi.dev-url}")
@@ -33,18 +27,12 @@ public class DocumentacaoConfiguration {
 	@Bean
 	protected OpenAPI apiInfo() {
 		
-		Server devServer = new Server();
-	    devServer.setUrl(devUrl);
-	    devServer.setDescription("Server URL in Development environment");
-
-	    Server prodServer = new Server();
-	    prodServer.setUrl(prodUrl);
-	    prodServer.setDescription("Server URL in Production environment");
-		
 		return new OpenAPI()
-				   .info(new Info().title("API Resi Controll").version("1.0.0"))
-				   .servers(List.of(devServer, prodServer));
+				   .info(getInfo())
+				   .servers(List.of(getDevServer(), getProdServer()))
+				   .components(getComponentes());
 	}
+	
 	
 	@Bean
     public GroupedOpenApi authenticationApi(){
@@ -54,5 +42,29 @@ public class DocumentacaoConfiguration {
                 .pathsToMatch(paths)
                 .build();
     }
+	
+	
+	private Server getDevServer() {
+		Server devServer = new Server();
+	    devServer.setUrl(devUrl);
+	    devServer.setDescription("Servidor de testes");
+		return devServer;
+	}
+	
+	private Server getProdServer() {
+		Server prodServer = new Server();
+	    prodServer.setUrl(prodUrl);
+	    prodServer.setDescription("Servidor de produção");
+		return prodServer;
+	}
 
+	private Info getInfo() {
+		return new Info().title("API Resi Controll").version("1.0.0");
+	}
+	
+	private Components getComponentes() {
+		return new Components().addSecuritySchemes("bearer-key", new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT"));
+	}
+
+	
 }
