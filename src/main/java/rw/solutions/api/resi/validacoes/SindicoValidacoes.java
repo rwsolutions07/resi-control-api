@@ -3,10 +3,12 @@ package rw.solutions.api.resi.validacoes;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import rw.solutions.api.resi.exceptions.ValidacaoException;
 import rw.solutions.api.resi.model.repository.SindicoRepository;
 
+@Component("SindicoValidacoes")
 public class SindicoValidacoes implements ValidacoesSeExisteEncomenda {
 	
 	@Autowired
