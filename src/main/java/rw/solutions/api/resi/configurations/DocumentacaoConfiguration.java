@@ -28,9 +28,6 @@ public class DocumentacaoConfiguration {
 	@Value("${bezkoder.openapi.prod-url}")
 	private String prodUrl;
 	
-	@Autowired
-	private BuildProperties buildProperties;
-	
 	@Bean
 	protected OpenAPI apiInfo() {
 		
@@ -66,7 +63,7 @@ public class DocumentacaoConfiguration {
 	}
 
 	private Info getInfo() {
-		return new Info().title("API Resi Controll").version(buildProperties.getVersion());
+		return new Info().title("API Resi Controll").version("1.0.1");
 	}
 	
 	private Components getComponentes() {
