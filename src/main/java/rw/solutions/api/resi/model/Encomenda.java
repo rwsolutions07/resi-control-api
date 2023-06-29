@@ -22,7 +22,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import rw.solutions.api.resi.model.record.DadosCadastroEncomenda;
+import rw.solutions.api.resi.model.dto.DadosCadastroEncomenda;
 
 @Getter
 @Setter

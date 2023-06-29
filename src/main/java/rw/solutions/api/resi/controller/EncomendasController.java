@@ -21,14 +21,14 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import rw.solutions.api.resi.model.record.DadosCadastroEncomenda;
-import rw.solutions.api.resi.model.record.DadosEncomenda;
+import rw.solutions.api.resi.model.dto.DadosCadastroEncomenda;
+import rw.solutions.api.resi.model.dto.DadosEncomenda;
 import rw.solutions.api.resi.service.EncomendaService;
 
 @CrossOrigin
 @Tag(name = "Encomendas", description = "Métodos de encomendas")
 @RestController
-@RequestMapping("/encomenda/")
+@RequestMapping("/encomenda")
 @SecurityRequirement(name = "bearer-key")
 public class EncomendasController {
 	

@@ -1,4 +1,4 @@
-package rw.solutions.api.resi.model.record;
+package rw.solutions.api.resi.model.dto;
 
 import rw.solutions.api.resi.model.Encomenda;
 import rw.solutions.api.resi.model.EncomendaStatus;

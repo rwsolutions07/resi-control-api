@@ -3,9 +3,12 @@ package rw.solutions.api.resi.configurations;
 import java.util.List;
 
 import org.springdoc.core.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.Components;
@@ -14,6 +17,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 
+@Component
 @OpenAPIDefinition
 @Configuration
 public class DocumentacaoConfiguration {
@@ -23,6 +27,9 @@ public class DocumentacaoConfiguration {
 
 	@Value("${bezkoder.openapi.prod-url}")
 	private String prodUrl;
+	
+	@Autowired
+	private BuildProperties buildProperties;
 	
 	@Bean
 	protected OpenAPI apiInfo() {
@@ -59,7 +66,7 @@ public class DocumentacaoConfiguration {
 	}
 
 	private Info getInfo() {
-		return new Info().title("API Resi Controll").version("1.0.0");
+		return new Info().title("API Resi Controll").version(buildProperties.getVersion());
 	}
 	
 	private Components getComponentes() {

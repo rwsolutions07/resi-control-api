@@ -26,7 +26,7 @@ public class Apartamento {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "torre_id", referencedColumnName = "id")
-	private Torre torrer;
+	private Torre torre;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

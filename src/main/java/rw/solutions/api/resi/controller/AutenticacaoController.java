@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import rw.solutions.api.resi.model.Usuario;
-import rw.solutions.api.resi.model.record.DadosLogin;
-import rw.solutions.api.resi.model.record.DadosTokenJWT;
+import rw.solutions.api.resi.model.dto.DadosLogin;
+import rw.solutions.api.resi.model.dto.DadosTokenJWT;
 import rw.solutions.api.resi.service.TokenService;
 
 @CrossOrigin

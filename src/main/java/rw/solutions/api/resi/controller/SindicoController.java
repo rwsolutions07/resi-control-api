@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import rw.solutions.api.resi.model.record.DadosSindico;
+import rw.solutions.api.resi.model.dto.DadosSindico;
 import rw.solutions.api.resi.service.SindicoService;
 
 @CrossOrigin

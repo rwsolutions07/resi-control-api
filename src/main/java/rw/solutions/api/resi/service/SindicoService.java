@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import rw.solutions.api.resi.model.Sindico;
-import rw.solutions.api.resi.model.record.DadosSindico;
+import rw.solutions.api.resi.model.dto.DadosSindico;
 import rw.solutions.api.resi.model.repository.SindicoRepository;
 import rw.solutions.api.resi.validacoes.CondominioValidacoes;
 
